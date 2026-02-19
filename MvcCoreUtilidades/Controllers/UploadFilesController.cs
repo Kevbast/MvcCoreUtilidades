@@ -21,7 +21,7 @@ namespace MvcCoreUtilidades.Controllers
         public async Task<IActionResult> SubirFile(IFormFile fichero)
         {
             //VAMOS A SUBIR EL FICHERO A LOS ELEMENTOS TEMPORALES DEL EQUIPO
-            string tempFolder = Path.GetTempPath();
+            //string tempFolder = Path.GetTempPath();
             string rootpath = this.environment.WebRootPath;
             string fileName = fichero.FileName;
             //CUANDO PENSAMOS EN FICHEROS Y SUS RUTAS
@@ -30,13 +30,14 @@ namespace MvcCoreUtilidades.Controllers
             //NETCORE NO ES WINDOWS,ESTA RUTA ES DE WINDOWS
             //LAS RUTAS DE LINUX PUEDEN SER DISTINTAS Y MACOS
             //DEBEMOS CREAR UTAS CON HERRAMIENTAS DE NET CORE:Path
-            string path = Path.Combine(rootpath,"images", fileName);
+            string path = Path.Combine(rootpath,"uploads", fileName);
             //Y LO SUBIMOS MEDIANTE STREAM
             using (Stream stream = new FileStream(path, FileMode.Create))
             {
                 await fichero.CopyToAsync(stream);
             }
             ViewData["MENSAJE"] = "Fichero subido a " + path;
+            ViewData["FILENAME"] = fileName;
                 return View();
         }
 
