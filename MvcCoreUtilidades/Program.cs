@@ -1,7 +1,21 @@
+using MvcCoreUtilidades.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//vamos a implementarlo puesto que vamos a utilizarlo en varios sitios
+builder.Services.AddSingleton<HelperPathProvider>();
+//EL TRANSIENT PARA USAR DATOS
+//EL SINGLETON ES ESTÁTICO,NO VA A CAMBIAR
+
+builder.Services.AddHttpContextAccessor();
+
+//vamos a añadirmemorycache para el nuevo controllador
+builder.Services.AddDistributedMemoryCache();
+//añadimos otro para el cache personalizado antes haber instalado su nugget
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
