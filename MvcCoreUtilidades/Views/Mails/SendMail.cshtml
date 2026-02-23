@@ -1,0 +1,14 @@
+﻿<h1>Enviar un correo</h1>
+
+<form method="post">
+<label>To:</label>
+<input type="text" name="to" class="form-control" />
+<label>Asunto: </label>
+    <input type="text" name="asunto" class="form-control" />
+    <label>Mensaje: </label>
+    <textarea name="mensaje" class="form-control">
+        Send mail
+    </textarea>
+<button class="btn btn-info">Enviar mensaje</button>
+</form>
+<h2 style="color:blueviolet">@ViewData["MENSAJE"]</h2>
