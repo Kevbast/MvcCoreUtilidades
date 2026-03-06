@@ -21,5 +21,26 @@ namespace MvcCoreUtilidades.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult LogIn()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult LogIn(string usuario)
+        {
+            HttpContext.Session.SetString("USUARIO", usuario);
+            ViewData["MENSAJE"] = "Usuario en el sistema";
+            return View();
+        }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("USUARIO");
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }

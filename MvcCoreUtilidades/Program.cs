@@ -1,9 +1,12 @@
 using MvcCoreUtilidades.Helpers;
+using MvcCoreUtilidades.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<RepositoryCoches>();
 
 //vamos a implementarlo puesto que vamos a utilizarlo en varios sitios
 builder.Services.AddSingleton<HelperPathProvider>();
@@ -16,6 +19,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 //añadimos otro para el cache personalizado antes haber instalado su nugget
 builder.Services.AddMemoryCache();
+
+//añadimos session para la partial view de shared
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -35,7 +41,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-
+//Usamos la session
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")

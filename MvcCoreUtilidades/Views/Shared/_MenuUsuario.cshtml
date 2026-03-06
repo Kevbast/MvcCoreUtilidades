@@ -1,0 +1,34 @@
+﻿@{
+    string usuario = Context.Session.GetString("USUARIO");
+
+
+}
+
+@if (usuario == null)
+{
+    
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LogIn">LOGIN</a>
+            </li>
+            </ul>
+    </div>
+
+}
+else
+{
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LogOut">CERRAR SESIÓN @usuario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Perfil">Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Pedidos">Pedidos</a>
+            </li>
+        </ul>
+    </div>
+}

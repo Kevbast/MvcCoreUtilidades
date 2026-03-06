@@ -1,0 +1,16 @@
+﻿@model Coche
+<h1>Details coche</h1>
+
+@if (Model == null)
+{
+    <h2 style="color:darkmagenta">EL COCHE NO EXISTE</h2>
+}
+else
+{
+    <div class="card" style="width:18rem;">
+        <img src="@Model.Imagen" style="width:100px;height:100px" />
+        <div class="card-body">
+            <h2 class="card-title">Tipo:@Model.Marca @Model.Modelo</h2>
+        </div>
+    </div>
+}
